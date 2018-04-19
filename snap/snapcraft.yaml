@@ -1,0 +1,29 @@
+name: fpi # check to see if it's available
+version: '1.0+git' # check versioning
+summary: FPI is an alien-like utility for Solus. # 79 char long summary
+description: |
+    FPI is the Foreign Package Installer, an alien-like utility for Solus that converts between package formats. The initial idea is to convert .deb files into native .eopkg files for installation on Solus.
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs
+
+apps:
+  fpi:
+    command: fpi
+    environment: 
+      LC_ALL: C.UTF-8
+    plugs:
+      - home
+      - network
+      - network-bind
+     
+parts: 
+  my-part:
+    source: https://github.com/kz6fittycent/fpi
+    source-type: git
+    plugin: python3
+    
+    build-packages:
+      - python3
+      
+    stage-packages:
+      - python3
